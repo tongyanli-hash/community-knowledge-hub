@@ -1,0 +1,286 @@
+/*
+ * DESIGN SYSTEM: Structured Clarity
+ * Reading List page: Left filter panel + right book list
+ * Part numbers as large watermarks, category chips, book cards
+ */
+
+import { useState, useMemo } from "react";
+import Layout from "@/components/Layout";
+import { readingListParts, totalBookCount, type Part, type Book } from "@/data/readingList";
+import { Search, BookOpen, ChevronDown, ChevronRight, Filter, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const READING_LIST_IMG = "https://private-us-east-1.manuscdn.com/sessionFile/L084l32Vn0CzxjyMV7geBH/sandbox/odBZMa5bBYVoWN5sVBha6S-img-2_1771474121000_na1fn_cmVhZGluZy1saXN0LWhlcm8.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTDA4NGwzMlZuMEN6eGp5TVY3Z2VCSC9zYW5kYm94L29kQlpNYTViQllWb1dONXNWQmhhNlMtaW1nLTJfMTc3MTQ3NDEyMTAwMF9uYTFmbl9jbVZoWkdsdVp5MXNhWE4wTFdobGNtOC5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=sYF4lERSc3CLa4sGyNo7iORoZlFn3O06HR-B3H4JJiKLW3MIi3lxMF-dQFjL7FvSnTBzCLThR39uWye5joLIX9Leq15eJN0qAw2SkT01oL6aMAIoSBPUCGQkFgue~cgaP25MPsQFhHySV9Liffa5oDaiDddbRnfTtjZwMeE3qWgyi54Fyd3Cr3~WFlkhcdEEv12LlU~2tOeeFm3xve3o~m8wi8DRzGqQOVOdMyX92NqwnHv2qj7KqIxAYeVKeBsWeTvo0mvq070r3tcglDtEmcc~lnp1DKbxNlfK7HMphHXcakOml8oRrTtKN1AlOCLzLOSH~A4HNu8oAxFregxuDg__";
+
+// Part roman numerals for display
+const partNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+
+function BookCard({ book, index }: { book: Book; index: number }) {
+  return (
+    <div
+      className="group flex items-start gap-4 py-4 border-b border-border last:border-b-0 hover:bg-[oklch(0.33_0.09_155)]/[0.03] transition-colors duration-150 px-4 -mx-4 rounded-sm animate-fade-in-up"
+      style={{ animationDelay: `${Math.min(index * 30, 300)}ms`, opacity: 0, animationFillMode: 'forwards' }}
+    >
+      {/* Book number */}
+      <span className="font-mono-custom text-xs text-muted-foreground/60 w-6 shrink-0 pt-0.5 text-right">
+        {index + 1}
+      </span>
+      {/* Book icon */}
+      <div className="w-8 h-8 bg-[oklch(0.33_0.09_155)]/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-[oklch(0.33_0.09_155)]/20 transition-colors">
+        <BookOpen size={14} className="text-[oklch(0.33_0.09_155)]" />
+      </div>
+      {/* Book info */}
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-foreground leading-snug">{book.title}</p>
+        {book.author && (
+          <p className="font-mono-custom text-xs text-muted-foreground mt-0.5">{book.author}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CategorySection({ name, books, globalOffset }: { name: string; books: Book[]; globalOffset: number }) {
+  return (
+    <div className="mb-8">
+      <div className="flex items-center gap-3 mb-3">
+        <span className="category-chip">{name}</span>
+        <span className="font-mono-custom text-xs text-muted-foreground">{books.length} books</span>
+      </div>
+      <div>
+        {books.map((book, i) => (
+          <BookCard key={i} book={book} index={globalOffset + i} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PartSection({ part, partIndex, isVisible }: { part: Part; partIndex: number; isVisible: boolean }) {
+  if (!isVisible) return null;
+
+  let globalOffset = 0;
+  for (let i = 0; i < partIndex; i++) {
+    globalOffset += readingListParts[i].totalBooks;
+  }
+
+  return (
+    <div className="mb-16">
+      {/* Part header with watermark */}
+      <div className="relative mb-8 pb-4 border-b-2 border-[oklch(0.33_0.09_155)]">
+        <div className="absolute right-0 top-0 part-number-watermark select-none pointer-events-none">
+          {partNumerals[partIndex]}
+        </div>
+        <div className="relative">
+          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.33_0.09_155)] block mb-1">
+            Part {partNumerals[partIndex]}
+          </span>
+          <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground">
+            {part.shortName}
+          </h2>
+          <p className="font-mono-custom text-xs text-muted-foreground mt-2">
+            {part.totalBooks} books · {part.categories.length} categories
+          </p>
+        </div>
+      </div>
+
+      {/* Categories */}
+      {part.categories.map((cat, ci) => {
+        const catOffset = globalOffset + part.categories.slice(0, ci).reduce((sum, c) => sum + c.books.length, 0);
+        return (
+          <CategorySection key={ci} name={cat.name} books={cat.books} globalOffset={catOffset} />
+        );
+      })}
+    </div>
+  );
+}
+
+export default function ReadingList() {
+  const [search, setSearch] = useState("");
+  const [selectedPart, setSelectedPart] = useState<string | null>(null);
+  const [expandedParts, setExpandedParts] = useState<Set<string>>(new Set(["part-1"]));
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  const togglePart = (id: string) => {
+    setExpandedParts(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  // Filter books by search
+  const filteredParts = useMemo(() => {
+    if (!search.trim() && !selectedPart) return readingListParts;
+    return readingListParts
+      .filter(p => !selectedPart || p.id === selectedPart)
+      .map(part => ({
+        ...part,
+        categories: part.categories
+          .map(cat => ({
+            ...cat,
+            books: cat.books.filter(b =>
+              !search.trim() ||
+              b.title.toLowerCase().includes(search.toLowerCase()) ||
+              b.author.toLowerCase().includes(search.toLowerCase()) ||
+              b.category.toLowerCase().includes(search.toLowerCase())
+            ),
+          }))
+          .filter(cat => cat.books.length > 0),
+      }))
+      .filter(p => p.categories.length > 0);
+  }, [search, selectedPart]);
+
+  const filteredCount = filteredParts.reduce((sum, p) => sum + p.totalBooks, 0);
+
+  return (
+    <Layout>
+      {/* Page Header with image */}
+      <div className="relative h-48 lg:h-64 overflow-hidden">
+        <img src={READING_LIST_IMG} alt="Reading list" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.04_155)]/90 to-[oklch(0.18_0.04_155)]/60" />
+        <div className="relative h-full flex flex-col justify-end px-8 pb-8">
+          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-white/50 mb-2">Curated Collection</span>
+          <h1 className="font-display text-3xl lg:text-5xl font-bold text-white">Reading List</h1>
+          <p className="text-white/60 text-sm mt-2">
+            {totalBookCount} books across 8 domains of business knowledge
+          </p>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex min-h-screen">
+        {/* Filter Sidebar */}
+        <aside className={cn(
+          "w-64 shrink-0 border-r border-border bg-[oklch(0.99_0.002_80)] sticky top-0 h-screen overflow-y-auto",
+          "hidden lg:block"
+        )}>
+          <div className="p-5">
+            {/* Search */}
+            <div className="relative mb-5">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search books..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="w-full pl-9 pr-3 py-2 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-1 focus:ring-[oklch(0.33_0.09_155)] focus:border-[oklch(0.33_0.09_155)] placeholder:text-muted-foreground/60"
+              />
+              {search && (
+                <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                  <X size={12} />
+                </button>
+              )}
+            </div>
+
+            {/* All Parts */}
+            <div className="mb-3">
+              <button
+                onClick={() => setSelectedPart(null)}
+                className={cn(
+                  "w-full text-left px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-150",
+                  !selectedPart
+                    ? "bg-[oklch(0.33_0.09_155)] text-white"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                )}
+              >
+                All Parts
+                <span className="ml-auto float-right font-mono-custom text-xs opacity-70">{totalBookCount}</span>
+              </button>
+            </div>
+
+            {/* Part filters */}
+            <div className="space-y-0.5">
+              {readingListParts.map((part, i) => (
+                <div key={part.id}>
+                  <button
+                    onClick={() => {
+                      setSelectedPart(selectedPart === part.id ? null : part.id);
+                      togglePart(part.id);
+                    }}
+                    className={cn(
+                      "w-full text-left px-3 py-2 rounded-sm text-sm transition-colors duration-150 flex items-center gap-2",
+                      selectedPart === part.id
+                        ? "bg-[oklch(0.33_0.09_155)]/10 text-[oklch(0.33_0.09_155)] font-semibold border-l-2 border-[oklch(0.33_0.09_155)]"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    )}
+                  >
+                    <span className="font-mono-custom text-[10px] w-5 text-center opacity-60">{partNumerals[i]}</span>
+                    <span className="flex-1 truncate text-xs">{part.shortName}</span>
+                    <span className="font-mono-custom text-[10px] opacity-50 shrink-0">{part.totalBooks}</span>
+                  </button>
+
+                  {/* Category sub-items */}
+                  {(selectedPart === part.id || expandedParts.has(part.id)) && selectedPart === part.id && (
+                    <div className="ml-5 mt-0.5 space-y-0.5 mb-1">
+                      {part.categories.map((cat, ci) => (
+                        <div key={ci} className="flex items-center gap-2 px-3 py-1.5 text-xs text-muted-foreground">
+                          <span className="w-1 h-1 rounded-full bg-[oklch(0.33_0.09_155)]/40 shrink-0" />
+                          <span className="truncate">{cat.name}</span>
+                          <span className="font-mono-custom text-[10px] ml-auto opacity-50">{cat.books.length}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        {/* Mobile Filter Button */}
+        <div className="lg:hidden fixed bottom-4 right-4 z-30">
+          <button
+            onClick={() => setFilterOpen(!filterOpen)}
+            className="flex items-center gap-2 bg-[oklch(0.33_0.09_155)] text-white px-4 py-2.5 rounded-full shadow-lg text-sm font-semibold"
+          >
+            <Filter size={14} />
+            Filter
+          </button>
+        </div>
+
+        {/* Book List */}
+        <div className="flex-1 px-6 lg:px-10 py-8 min-w-0">
+          {/* Results count */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="font-mono-custom text-xs text-muted-foreground uppercase tracking-widest">
+                {search || selectedPart ? `${filteredCount} results` : `${totalBookCount} books total`}
+              </span>
+              {(search || selectedPart) && (
+                <button
+                  onClick={() => { setSearch(""); setSelectedPart(null); }}
+                  className="ml-3 text-xs text-[oklch(0.33_0.09_155)] hover:underline font-medium"
+                >
+                  Clear filters
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Parts */}
+          {filteredParts.length === 0 ? (
+            <div className="text-center py-20">
+              <BookOpen size={40} className="text-muted-foreground/30 mx-auto mb-4" />
+              <p className="text-muted-foreground font-medium">No books found</p>
+              <p className="text-muted-foreground/60 text-sm mt-1">Try a different search term</p>
+            </div>
+          ) : (
+            filteredParts.map((part, i) => {
+              const originalIndex = readingListParts.findIndex(p => p.id === part.id);
+              return (
+                <PartSection
+                  key={part.id}
+                  part={part}
+                  partIndex={originalIndex}
+                  isVisible={true}
+                />
+              );
+            })
+          )}
+        </div>
+      </div>
+    </Layout>
+  );
+}
