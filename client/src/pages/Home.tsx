@@ -1,6 +1,6 @@
 /*
- * DESIGN SYSTEM: Structured Clarity
- * Home page: Full-bleed hero with library image, asymmetric layout
+ * DESIGN SYSTEM: Warm & Welcoming
+ * Home page: Full-bleed warm library hero, cozy amber tones
  * Stats bar, feature cards, community CTA
  */
 
@@ -10,9 +10,9 @@ import { BookOpen, Users, Archive, ArrowRight, TrendingUp, Lightbulb, Globe, Dat
 import { totalBookCount } from "@/data/readingList";
 import { domains } from "@/data/domains";
 
-const HERO_IMG = "https://private-us-east-1.manuscdn.com/sessionFile/L084l32Vn0CzxjyMV7geBH/sandbox/odBZMa5bBYVoWN5sVBha6S-img-1_1771474125000_na1fn_aGVyby1iYW5uZXI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTDA4NGwzMlZuMEN6eGp5TVY3Z2VCSC9zYW5kYm94L29kQlpNYTViQllWb1dONXNWQmhhNlMtaW1nLTFfMTc3MTQ3NDEyNTAwMF9uYTFmbl9hR1Z5YnkxaVlXNXVaWEkuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=uSJfFL0xnnRRO-JhShMkc9votXcdfdxLkQQQIdvQk9XjZPiPZGudrsGg6Ygmz~n4~76CSE9U0JTMLRSvcJdCgvP-J~HCOP5PZ4NIHoMpHcXAJ~rbjzkHWI45Dw5y7ZqvQqZUbPO53rWzwOsS-almSytzTRDVevXnswPk4u0zvwgAHoMib4P7BXsUcykqI3R29lSFFOhwFwnYauM2ATQ6FBDYPVffzCfQDCYmWgoRcCwAbJ21SGH5Vm1QpvXTVzGlV9JiRFzZAKGuz0g10kf57Xqg0PxDdxzn2sdU2HpSzEqiFSGftTIVsQUBnH58hGHbnVlbn0fzbVY8fpA3PVYVLA__";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273273644/HCJmvRPNXzYHmA4mt7a4Uy/hero-warm-7g5yWi57oSXZMKxAL35BZM.webp";
 
-const COMMUNITY_IMG = "https://private-us-east-1.manuscdn.com/sessionFile/L084l32Vn0CzxjyMV7geBH/sandbox/odBZMa5bBYVoWN5sVBha6S-img-3_1771474124000_na1fn_Y29tbXVuaXR5LXNlY3Rpb24.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTDA4NGwzMlZuMEN6eGp5TVY3Z2VCSC9zYW5kYm94L29kQlpNYTViQllWb1dONXNWQmhhNlMtaW1nLTNfMTc3MTQ3NDEyNDAwMF9uYTFmbl9ZMjl0YlhWdWFYUjVMWE5sWTNScGIyNC5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=nRkP-KG7pR-5Dp-mbBQ3cWNpO5ruZOTavMNc4JxV6Gp1Ga1jb56xhlw28iEJzZGsqzdjfg1iZ7-I5yXWa-qTj5RewAvkhPBsIGblWgpWwmMsIlFJ-yJm9~WhJWjsMoBapFlRV1BnGk5jqCRjGfW2jm9PgJ0Rz~lp~409jhrg8dK49qa4UwDZD018cbDEbiuLAE2SWAAdCu7TmrbH~a37HBxsLlxSoZOE440khxSuQkj9rpgX5yywKX9YeQcKIrfXzwxJo9v5oXZkgLMkaqHYnaskDl0XDuDF~1DdAmbPqlw7BxMcOYYxP9PDoJPL6PHYBtZAumD48Cvk2PXsQuOQzA__";
+const COMMUNITY_IMG = "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80&auto=format&fit=crop";
 
 const features = [
   {
@@ -62,8 +62,8 @@ export default function Home() {
           alt="Library reading room"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Dark overlay — left side heavier for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
+        {/* Warm amber-tinted overlay — left side heavier for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.14_0.04_48)]/85 via-[oklch(0.14_0.04_48)]/55 to-[oklch(0.14_0.04_48)]/15" />
 
         <div className="relative h-full flex flex-col justify-end pb-16 px-8 lg:px-16 max-w-3xl">
           <div className="animate-fade-in-up">
@@ -72,14 +72,14 @@ export default function Home() {
             </span>
             <h1 className="font-display text-5xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
               Learn Together,<br />
-              <em className="not-italic text-[oklch(0.91_0.04_80)]">Grow Further</em>
+              <em className="not-italic text-[oklch(0.88_0.06_75)]">Grow Further</em>
             </h1>
             <p className="text-white/75 text-lg leading-relaxed max-w-xl mb-8">
               A curated knowledge platform for entrepreneurs and business builders. Explore our reading list, share insights, and connect with a community of serious learners.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/reading-list">
-                <button className="flex items-center gap-2 bg-[oklch(0.33_0.09_155)] hover:bg-[oklch(0.28_0.09_155)] text-white px-6 py-3 text-sm font-semibold rounded-sm transition-colors duration-150">
+                <button className="flex items-center gap-2 bg-[oklch(0.56_0.14_58)] hover:bg-[oklch(0.50_0.13_58)] text-white px-6 py-3 text-sm font-semibold rounded-sm transition-colors duration-150">
                   <BookOpen size={16} />
                   Explore Reading List
                   <ArrowRight size={14} />
@@ -97,11 +97,11 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-[oklch(0.18_0.04_155)] text-white">
+      <section className="bg-[oklch(0.24_0.05_48)] text-white">
         <div className="max-w-5xl mx-auto px-8 py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <div key={i} className="text-center lg:text-left border-l border-white/10 pl-6 first:border-l-0 first:pl-0 lg:first:border-l lg:first:pl-6">
-              <div className="font-display text-3xl font-bold text-[oklch(0.91_0.04_80)]">{stat.value}</div>
+              <div className="font-display text-3xl font-bold text-[oklch(0.88_0.06_75)]">{stat.value}</div>
               <div className="font-mono-custom text-xs text-white/50 uppercase tracking-widest mt-1">{stat.label}</div>
             </div>
           ))}
@@ -111,7 +111,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20 px-8 lg:px-16 max-w-6xl mx-auto">
         <div className="mb-12">
-          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.33_0.09_155)] mb-3 block">What We Offer</span>
+          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.56_0.14_58)] mb-3 block">What We Offer</span>
           <h2 className="font-display text-4xl font-bold text-foreground">
             Everything you need to<br />accelerate your learning
           </h2>
@@ -123,16 +123,16 @@ export default function Home() {
             return (
               <div
                 key={i}
-                className="group bg-card border border-border rounded-sm p-8 hover:shadow-lg hover:border-[oklch(0.33_0.09_155)]/30 transition-all duration-200 animate-fade-in-up"
+                className="group bg-card border border-border rounded-lg p-8 hover:shadow-[0_6px_28px_oklch(0.56_0.14_58/0.14)] hover:border-[oklch(0.78_0.12_65)]/60 transition-all duration-200 animate-fade-in-up"
                 style={{ animationDelay: `${i * 100}ms` }}
               >
-                <div className="w-10 h-10 bg-[oklch(0.33_0.09_155)]/10 rounded-sm flex items-center justify-center mb-5">
-                  <Icon size={20} className="text-[oklch(0.33_0.09_155)]" />
+                <div className="w-10 h-10 bg-[oklch(0.56_0.14_58)]/10 rounded-sm flex items-center justify-center mb-5">
+                  <Icon size={20} className="text-[oklch(0.56_0.14_58)]" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-foreground mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-6">{feature.description}</p>
                 <Link href={feature.href}>
-                  <button className="flex items-center gap-1.5 text-[oklch(0.33_0.09_155)] text-sm font-semibold group-hover:gap-2.5 transition-all duration-150">
+                  <button className="flex items-center gap-1.5 text-[oklch(0.56_0.14_58)] text-sm font-semibold group-hover:gap-2.5 transition-all duration-150">
                     {feature.cta}
                     <ArrowRight size={14} />
                   </button>
@@ -144,15 +144,15 @@ export default function Home() {
       </section>
 
       {/* Knowledge Domains Spotlight */}
-      <section className="py-16 px-8 lg:px-16 bg-[oklch(0.97_0.005_155)]">
+      <section className="py-16 px-8 lg:px-16 bg-[oklch(0.97_0.015_78)]">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.33_0.09_155)] mb-2 block">Specialized Learning</span>
+              <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.56_0.14_58)] mb-2 block">Specialized Learning</span>
               <h2 className="font-display text-3xl font-bold text-foreground">Knowledge Domains</h2>
             </div>
             <Link href="/domains">
-              <button className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.33_0.09_155)] font-semibold hover:gap-2.5 transition-all">
+              <button className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.56_0.14_58)] font-semibold hover:gap-2.5 transition-all">
                 View all domains <ArrowRight size={14} />
               </button>
             </Link>
@@ -162,17 +162,17 @@ export default function Home() {
               <Link key={domain.id} href={domain.status === "active" ? `/domains/${domain.slug}` : "/domains"}>
                 <div className={`group relative border rounded-sm p-5 transition-all duration-200 overflow-hidden ${
                   domain.status === "active"
-                    ? "border-border bg-card hover:border-[oklch(0.33_0.09_155)]/50 hover:shadow-md cursor-pointer"
+                    ? "border-border bg-card hover:border-[oklch(0.56_0.14_58)]/50 hover:shadow-md cursor-pointer"
                     : "border-border/40 bg-muted/20 opacity-60 cursor-default"
                 }`}>
                   <div className="absolute top-0 right-0 w-20 h-20 rounded-full -translate-y-1/2 translate-x-1/2 opacity-10" style={{ background: domain.color }} />
                   <div className="w-8 h-8 rounded-sm flex items-center justify-center mb-3" style={{ background: `${domain.color}20` }}>
                     <Database size={15} style={{ color: domain.color }} />
                   </div>
-                  <h3 className="font-display text-sm font-bold text-foreground mb-1 group-hover:text-[oklch(0.33_0.09_155)] transition-colors">{domain.title}</h3>
+                  <h3 className="font-display text-sm font-bold text-foreground mb-1 group-hover:text-[oklch(0.56_0.14_58)] transition-colors">{domain.title}</h3>
                   <p className="text-xs text-muted-foreground leading-snug mb-3">{domain.subtitle}</p>
                   {domain.status === "active" ? (
-                    <span className="font-mono-custom text-[10px] bg-[oklch(0.33_0.09_155)]/10 text-[oklch(0.33_0.09_155)] px-2 py-0.5 rounded-sm uppercase tracking-wider">Available</span>
+                    <span className="font-mono-custom text-[10px] bg-[oklch(0.56_0.14_58)]/10 text-[oklch(0.56_0.14_58)] px-2 py-0.5 rounded-sm uppercase tracking-wider">Available</span>
                   ) : (
                     <span className="font-mono-custom text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-sm uppercase tracking-wider">Coming Soon</span>
                   )}
@@ -190,10 +190,10 @@ export default function Home() {
           alt="Community collaboration"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[oklch(0.18_0.04_155)]/85" />
+        <div className="absolute inset-0 bg-[oklch(0.24_0.05_48)]/85" />
         <div className="relative py-20 px-8 lg:px-16 max-w-6xl mx-auto">
           <div className="max-w-2xl">
-            <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.91_0.04_80)] mb-4 block">Our Mission</span>
+            <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.88_0.06_75)] mb-4 block">Our Mission</span>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-6">
               Knowledge shared is knowledge multiplied
             </h2>
@@ -209,14 +209,14 @@ export default function Home() {
                 const Icon = item.icon;
                 return (
                   <div key={i} className="flex flex-col items-start gap-2">
-                    <Icon size={20} className="text-[oklch(0.91_0.04_80)]" />
+                    <Icon size={20} className="text-[oklch(0.88_0.06_75)]" />
                     <span className="text-white/80 text-sm font-medium">{item.label}</span>
                   </div>
                 );
               })}
             </div>
             <Link href="/community">
-              <button className="flex items-center gap-2 bg-[oklch(0.91_0.04_80)] hover:bg-[oklch(0.85_0.05_80)] text-[oklch(0.18_0.04_155)] px-6 py-3 text-sm font-bold rounded-sm transition-colors duration-150">
+              <button className="flex items-center gap-2 bg-[oklch(0.88_0.06_75)] hover:bg-[oklch(0.85_0.05_80)] text-[oklch(0.24_0.05_48)] px-6 py-3 text-sm font-bold rounded-sm transition-colors duration-150">
                 Join the Community
                 <ArrowRight size={14} />
               </button>
@@ -226,10 +226,10 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[oklch(0.12_0.03_155)] text-white/50 py-10 px-8 lg:px-16">
+      <footer className="bg-[oklch(0.18_0.04_48)] text-white/50 py-10 px-8 lg:px-16">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded bg-[oklch(0.33_0.09_155)] flex items-center justify-center">
+            <div className="w-7 h-7 rounded bg-[oklch(0.56_0.14_58)] flex items-center justify-center">
               <BookOpen size={14} className="text-white" />
             </div>
             <span className="font-display font-bold text-white/80 text-sm">Community Knowledge Hub</span>

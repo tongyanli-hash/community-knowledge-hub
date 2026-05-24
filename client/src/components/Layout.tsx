@@ -1,7 +1,7 @@
 /*
- * DESIGN SYSTEM: Structured Clarity
+ * DESIGN SYSTEM: Warm & Welcoming
  * Layout: Fixed left sidebar (240px) + main content area
- * Sidebar: Deep forest green background, sand accent on active items
+ * Sidebar: Deep walnut/espresso background, warm amber accent on active items
  */
 
 import { useState } from "react";

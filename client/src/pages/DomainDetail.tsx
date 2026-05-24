@@ -64,7 +64,7 @@ export default function DomainDetail() {
         <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-8">
           <h1 className="font-display text-3xl font-bold mb-3">Domain Not Found</h1>
           <Link href="/domains">
-            <button className="flex items-center gap-2 bg-[oklch(0.33_0.09_155)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm">
+            <button className="flex items-center gap-2 bg-[oklch(0.56_0.14_58)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm">
               <ArrowLeft size={14} /> Back to Domains
             </button>
           </Link>
@@ -104,7 +104,7 @@ export default function DomainDetail() {
       {/* Header */}
       <div
         className="relative overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${domain.color}18 0%, oklch(0.97 0.002 286) 60%)` }}
+        style={{ background: `linear-gradient(135deg, ${domain.color}18 0%, oklch(0.98 0.012 82) 60%)` }}
       >
         <div className="px-8 lg:px-12 pt-8 pb-10">
           <Link href="/domains">
@@ -157,14 +157,14 @@ export default function DomainDetail() {
             {domain.concepts.map((concept) => (
               <div
                 key={concept.id}
-                className="border border-border rounded-sm p-5 hover:border-[oklch(0.33_0.09_155)]/40 transition-colors group"
+                className="border border-border rounded-lg p-5 hover:border-[oklch(0.78_0.12_65)]/60 transition-colors group"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="font-display text-base font-bold text-foreground group-hover:text-[oklch(0.33_0.09_155)] transition-colors">
+                  <h3 className="font-display text-base font-bold text-foreground group-hover:text-[oklch(0.56_0.14_58)] transition-colors">
                     {concept.title}
                   </h3>
                   {concept.relatedBooks && concept.relatedBooks.length > 0 && (
-                    <span className="flex items-center gap-1 font-mono-custom text-[10px] text-[oklch(0.33_0.09_155)] bg-[oklch(0.33_0.09_155)]/10 px-1.5 py-0.5 rounded-sm shrink-0">
+                    <span className="flex items-center gap-1 font-mono-custom text-[10px] text-[oklch(0.56_0.14_58)] bg-[oklch(0.56_0.14_58)]/10 px-1.5 py-0.5 rounded-sm shrink-0">
                       <BookOpen size={9} /> {concept.relatedBooks.length} book{concept.relatedBooks.length > 1 ? "s" : ""}
                     </span>
                   )}
@@ -199,7 +199,7 @@ export default function DomainDetail() {
                       className={cn(
                         "px-4 py-2.5 text-sm font-semibold border-b-2 -mb-px transition-colors font-mono-custom uppercase tracking-wider text-xs",
                         activeLevel === level
-                          ? "border-[oklch(0.33_0.09_155)] text-[oklch(0.33_0.09_155)]"
+                          ? "border-[oklch(0.56_0.14_58)] text-[oklch(0.56_0.14_58)]"
                           : "border-transparent text-muted-foreground hover:text-foreground"
                       )}
                     >
@@ -255,7 +255,7 @@ export default function DomainDetail() {
                   className={cn(
                     "px-3 py-1.5 text-xs font-semibold rounded-sm transition-colors capitalize font-mono-custom uppercase tracking-wider",
                     activeResourceType === type
-                      ? "bg-[oklch(0.33_0.09_155)] text-white"
+                      ? "bg-[oklch(0.56_0.14_58)] text-white"
                       : "bg-muted text-muted-foreground hover:bg-muted/80"
                   )}
                 >
@@ -273,7 +273,7 @@ export default function DomainDetail() {
                     href={resource.url ?? "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col border border-border rounded-sm p-4 hover:border-[oklch(0.33_0.09_155)]/50 hover:shadow-sm transition-all duration-150"
+                    className="group flex flex-col border border-border rounded-lg p-4 hover:border-[oklch(0.78_0.12_65)]/60 hover:shadow-sm transition-all duration-150"
                   >
                     <div className="flex items-start gap-3 mb-2">
                       <div className="w-7 h-7 bg-muted rounded-sm flex items-center justify-center shrink-0">
@@ -281,10 +281,10 @@ export default function DomainDetail() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <h4 className="font-display text-sm font-bold text-foreground group-hover:text-[oklch(0.33_0.09_155)] transition-colors leading-snug">
+                          <h4 className="font-display text-sm font-bold text-foreground group-hover:text-[oklch(0.56_0.14_58)] transition-colors leading-snug">
                             {resource.title}
                           </h4>
-                          <ExternalLink size={10} className="text-muted-foreground/40 group-hover:text-[oklch(0.33_0.09_155)]/60 shrink-0" />
+                          <ExternalLink size={10} className="text-muted-foreground/40 group-hover:text-[oklch(0.56_0.14_58)]/60 shrink-0" />
                         </div>
                       </div>
                     </div>
@@ -325,10 +325,10 @@ export default function DomainDetail() {
               {allRelatedBooks.map((book, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 p-3.5 border border-border rounded-sm hover:border-[oklch(0.33_0.09_155)]/30 transition-colors group"
+                  className="flex items-start gap-3 p-3.5 border border-border rounded-sm hover:border-[oklch(0.56_0.14_58)]/30 transition-colors group"
                 >
-                  <div className="w-7 h-7 bg-[oklch(0.33_0.09_155)]/10 rounded-sm flex items-center justify-center shrink-0">
-                    <BookOpen size={12} className="text-[oklch(0.33_0.09_155)]" />
+                  <div className="w-7 h-7 bg-[oklch(0.56_0.14_58)]/10 rounded-sm flex items-center justify-center shrink-0">
+                    <BookOpen size={12} className="text-[oklch(0.56_0.14_58)]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground leading-snug">{book.title}</p>
@@ -344,7 +344,7 @@ export default function DomainDetail() {
             </div>
             <div className="mt-4">
               <Link href="/reading-list">
-                <button className="flex items-center gap-2 text-sm text-[oklch(0.33_0.09_155)] font-semibold hover:gap-3 transition-all">
+                <button className="flex items-center gap-2 text-sm text-[oklch(0.56_0.14_58)] font-semibold hover:gap-3 transition-all">
                   View full reading list <ChevronRight size={14} />
                 </button>
               </Link>
