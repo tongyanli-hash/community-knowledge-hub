@@ -1,10 +1,3 @@
-/*
- * DESIGN SYSTEM: Structured Clarity
- * Swiss International Typographic Style × Digital Minimalism
- * Forest green #1A5C38, crisp white, warm sand accents
- * Fraunces (display) + Inter (body) + JetBrains Mono (labels)
- */
-
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -15,12 +8,16 @@ import Home from "./pages/Home";
 import ReadingList from "./pages/ReadingList";
 import Community from "./pages/Community";
 import Resources from "./pages/Resources";
+import Domains from "./pages/Domains";
+import DomainDetail from "./pages/DomainDetail";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/reading-list" component={ReadingList} />
+      <Route path="/domains" component={Domains} />
+      <Route path="/domains/:slug" component={DomainDetail} />
       <Route path="/community" component={Community} />
       <Route path="/resources" component={Resources} />
       <Route path="/404" component={NotFound} />

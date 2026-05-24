@@ -6,8 +6,9 @@
 
 import Layout from "@/components/Layout";
 import { Link } from "wouter";
-import { BookOpen, Users, Archive, ArrowRight, TrendingUp, Lightbulb, Globe } from "lucide-react";
+import { BookOpen, Users, Archive, ArrowRight, TrendingUp, Lightbulb, Globe, Database } from "lucide-react";
 import { totalBookCount } from "@/data/readingList";
+import { domains } from "@/data/domains";
 
 const HERO_IMG = "https://private-us-east-1.manuscdn.com/sessionFile/L084l32Vn0CzxjyMV7geBH/sandbox/odBZMa5bBYVoWN5sVBha6S-img-1_1771474125000_na1fn_aGVyby1iYW5uZXI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTDA4NGwzMlZuMEN6eGp5TVY3Z2VCSC9zYW5kYm94L29kQlpNYTViQllWb1dONXNWQmhhNlMtaW1nLTFfMTc3MTQ3NDEyNTAwMF9uYTFmbl9hR1Z5YnkxaVlXNXVaWEkuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=uSJfFL0xnnRRO-JhShMkc9votXcdfdxLkQQQIdvQk9XjZPiPZGudrsGg6Ygmz~n4~76CSE9U0JTMLRSvcJdCgvP-J~HCOP5PZ4NIHoMpHcXAJ~rbjzkHWI45Dw5y7ZqvQqZUbPO53rWzwOsS-almSytzTRDVevXnswPk4u0zvwgAHoMib4P7BXsUcykqI3R29lSFFOhwFwnYauM2ATQ6FBDYPVffzCfQDCYmWgoRcCwAbJ21SGH5Vm1QpvXTVzGlV9JiRFzZAKGuz0g10kf57Xqg0PxDdxzn2sdU2HpSzEqiFSGftTIVsQUBnH58hGHbnVlbn0fzbVY8fpA3PVYVLA__";
 
@@ -20,6 +21,13 @@ const features = [
     description: "100 carefully selected books across 8 domains — from macroeconomics and startup thinking to product development, marketing, and team building.",
     href: "/reading-list",
     cta: "Browse Books",
+  },
+  {
+    icon: Database,
+    title: "Knowledge Domains",
+    description: "Deep-dive curricula on specialized topics — Data Engineering, Product Management, Finance, and more — each with learning paths, tools, and reading list cross-links.",
+    href: "/domains",
+    cta: "Explore Domains",
   },
   {
     icon: Users,
@@ -109,7 +117,7 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
@@ -132,6 +140,46 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Knowledge Domains Spotlight */}
+      <section className="py-16 px-8 lg:px-16 bg-[oklch(0.97_0.005_155)]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.33_0.09_155)] mb-2 block">Specialized Learning</span>
+              <h2 className="font-display text-3xl font-bold text-foreground">Knowledge Domains</h2>
+            </div>
+            <Link href="/domains">
+              <button className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.33_0.09_155)] font-semibold hover:gap-2.5 transition-all">
+                View all domains <ArrowRight size={14} />
+              </button>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {domains.map((domain) => (
+              <Link key={domain.id} href={domain.status === "active" ? `/domains/${domain.slug}` : "/domains"}>
+                <div className={`group relative border rounded-sm p-5 transition-all duration-200 overflow-hidden ${
+                  domain.status === "active"
+                    ? "border-border bg-card hover:border-[oklch(0.33_0.09_155)]/50 hover:shadow-md cursor-pointer"
+                    : "border-border/40 bg-muted/20 opacity-60 cursor-default"
+                }`}>
+                  <div className="absolute top-0 right-0 w-20 h-20 rounded-full -translate-y-1/2 translate-x-1/2 opacity-10" style={{ background: domain.color }} />
+                  <div className="w-8 h-8 rounded-sm flex items-center justify-center mb-3" style={{ background: `${domain.color}20` }}>
+                    <Database size={15} style={{ color: domain.color }} />
+                  </div>
+                  <h3 className="font-display text-sm font-bold text-foreground mb-1 group-hover:text-[oklch(0.33_0.09_155)] transition-colors">{domain.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-snug mb-3">{domain.subtitle}</p>
+                  {domain.status === "active" ? (
+                    <span className="font-mono-custom text-[10px] bg-[oklch(0.33_0.09_155)]/10 text-[oklch(0.33_0.09_155)] px-2 py-0.5 rounded-sm uppercase tracking-wider">Available</span>
+                  ) : (
+                    <span className="font-mono-custom text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-sm uppercase tracking-wider">Coming Soon</span>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -188,6 +236,7 @@ export default function Home() {
           </div>
           <div className="flex gap-6 text-xs font-mono-custom uppercase tracking-widest">
             <Link href="/reading-list"><span className="hover:text-white transition-colors">Reading List</span></Link>
+            <Link href="/domains"><span className="hover:text-white transition-colors">Domains</span></Link>
             <Link href="/community"><span className="hover:text-white transition-colors">Community</span></Link>
             <Link href="/resources"><span className="hover:text-white transition-colors">Resources</span></Link>
           </div>

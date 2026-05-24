@@ -7,8 +7,10 @@
 import { useState, useMemo } from "react";
 import Layout from "@/components/Layout";
 import { readingListParts, totalBookCount, type Part, type Book } from "@/data/readingList";
-import { Search, BookOpen, ChevronDown, ChevronRight, Filter, X } from "lucide-react";
+import { domains } from "@/data/domains";
+import { Search, BookOpen, ChevronDown, ChevronRight, Filter, X, Database, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "wouter";
 
 const READING_LIST_IMG = "https://private-us-east-1.manuscdn.com/sessionFile/L084l32Vn0CzxjyMV7geBH/sandbox/odBZMa5bBYVoWN5sVBha6S-img-2_1771474121000_na1fn_cmVhZGluZy1saXN0LWhlcm8.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvTDA4NGwzMlZuMEN6eGp5TVY3Z2VCSC9zYW5kYm94L29kQlpNYTViQllWb1dONXNWQmhhNlMtaW1nLTJfMTc3MTQ3NDEyMTAwMF9uYTFmbl9jbVZoWkdsdVp5MXNhWE4wTFdobGNtOC5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=sYF4lERSc3CLa4sGyNo7iORoZlFn3O06HR-B3H4JJiKLW3MIi3lxMF-dQFjL7FvSnTBzCLThR39uWye5joLIX9Leq15eJN0qAw2SkT01oL6aMAIoSBPUCGQkFgue~cgaP25MPsQFhHySV9Liffa5oDaiDddbRnfTtjZwMeE3qWgyi54Fyd3Cr3~WFlkhcdEEv12LlU~2tOeeFm3xve3o~m8wi8DRzGqQOVOdMyX92NqwnHv2qj7KqIxAYeVKeBsWeTvo0mvq070r3tcglDtEmcc~lnp1DKbxNlfK7HMphHXcakOml8oRrTtKN1AlOCLzLOSH~A4HNu8oAxFregxuDg__";
 
@@ -64,6 +66,11 @@ function PartSection({ part, partIndex, isVisible }: { part: Part; partIndex: nu
     globalOffset += readingListParts[i].totalBooks;
   }
 
+  // Find domains that reference this part
+  const relatedDomains = domains.filter(
+    (d) => d.status === "active" && d.relatedReadingListParts.some((rp) => part.shortName.includes(rp) || rp.includes(part.shortName))
+  );
+
   return (
     <div className="mb-16">
       {/* Part header with watermark */}
@@ -83,6 +90,21 @@ function PartSection({ part, partIndex, isVisible }: { part: Part; partIndex: nu
           </p>
         </div>
       </div>
+
+      {/* Related Domain callout */}
+      {relatedDomains.length > 0 && (
+        <div className="mb-6 flex flex-wrap gap-2">
+          {relatedDomains.map((domain) => (
+            <Link key={domain.id} href={`/domains/${domain.slug}`}>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border text-xs font-medium transition-all hover:shadow-sm" style={{ borderColor: `${domain.color}40`, background: `${domain.color}08`, color: domain.color }}>
+                <Database size={11} />
+                <span>Related Domain: {domain.title}</span>
+                <ArrowRight size={10} />
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
       {/* Categories */}
       {part.categories.map((cat, ci) => {
@@ -190,9 +212,23 @@ export default function ReadingList() {
               </button>
             </div>
 
-            {/* Part filters */}
-            <div className="space-y-0.5">
-              {readingListParts.map((part, i) => (
+          {/* Knowledge Domains quick links */}
+          <div className="mb-5 pt-4 border-t border-border">
+            <p className="font-mono-custom text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Knowledge Domains</p>
+            {domains.filter(d => d.status === "active").map((domain) => (
+              <Link key={domain.id} href={`/domains/${domain.slug}`}>
+                <div className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors mb-0.5">
+                  <Database size={11} style={{ color: domain.color }} />
+                  <span>{domain.title}</span>
+                  <ArrowRight size={9} className="ml-auto opacity-40" />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Part filters */}
+          <div className="space-y-0.5">
+            {readingListParts.map((part, i) => (
                 <div key={part.id}>
                   <button
                     onClick={() => {
