@@ -1,5 +1,5 @@
 /*
- * DESIGN SYSTEM: Warm & Welcoming
+ * DESIGN SYSTEM: Modern Clean
  * Reading List page: Left filter panel + right book list
  * Part numbers as large watermarks, category chips, book cards
  */
@@ -20,7 +20,7 @@ const partNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 function BookCard({ book, index }: { book: Book; index: number }) {
   return (
     <div
-      className="group flex items-start gap-4 py-4 border-b border-border last:border-b-0 hover:bg-[oklch(0.56_0.14_58)]/[0.03] transition-colors duration-150 px-4 -mx-4 rounded-sm animate-fade-in-up"
+      className="group flex items-start gap-4 py-4 border-b border-border last:border-b-0 hover:bg-[oklch(0.51_0.22_264)]/[0.03] transition-colors duration-150 px-4 -mx-4 rounded-sm animate-fade-in-up"
       style={{ animationDelay: `${Math.min(index * 30, 300)}ms`, opacity: 0, animationFillMode: 'forwards' }}
     >
       {/* Book number */}
@@ -28,8 +28,8 @@ function BookCard({ book, index }: { book: Book; index: number }) {
         {index + 1}
       </span>
       {/* Book icon */}
-      <div className="w-8 h-8 bg-[oklch(0.56_0.14_58)]/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-[oklch(0.56_0.14_58)]/20 transition-colors">
-        <BookOpen size={14} className="text-[oklch(0.56_0.14_58)]" />
+      <div className="w-8 h-8 bg-[oklch(0.51_0.22_264)]/10 rounded-sm flex items-center justify-center shrink-0 group-hover:bg-[oklch(0.51_0.22_264)]/20 transition-colors">
+        <BookOpen size={14} className="text-[oklch(0.51_0.22_264)]" />
       </div>
       {/* Book info */}
       <div className="flex-1 min-w-0">
@@ -74,12 +74,12 @@ function PartSection({ part, partIndex, isVisible }: { part: Part; partIndex: nu
   return (
     <div className="mb-16">
       {/* Part header with watermark */}
-      <div className="relative mb-8 pb-4 border-b-2 border-[oklch(0.56_0.14_58)]">
+      <div className="relative mb-8 pb-4 border-b-2 border-[oklch(0.51_0.22_264)]">
         <div className="absolute right-0 top-0 part-number-watermark select-none pointer-events-none">
           {partNumerals[partIndex]}
         </div>
         <div className="relative">
-          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.56_0.14_58)] block mb-1">
+          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.51_0.22_264)] block mb-1">
             Part {partNumerals[partIndex]}
           </span>
           <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground">
@@ -161,7 +161,7 @@ export default function ReadingList() {
       {/* Page Header with image */}
       <div className="relative h-48 lg:h-64 overflow-hidden">
         <img src={READING_LIST_IMG} alt="Reading list" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.24_0.05_48)]/90 to-[oklch(0.24_0.05_48)]/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.13_0.02_264)]/90 to-[oklch(0.13_0.02_264)]/60" />
         <div className="relative h-full flex flex-col justify-end px-8 pb-8">
           <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-white/50 mb-2">Curated Collection</span>
           <h1 className="font-display text-3xl lg:text-5xl font-bold text-white">Reading List</h1>
@@ -187,7 +187,7 @@ export default function ReadingList() {
                 placeholder="Search books..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-[oklch(0.56_0.14_58)] focus:border-[oklch(0.56_0.14_58)] placeholder:text-muted-foreground/60"
+                className="w-full pl-9 pr-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-[oklch(0.51_0.22_264)] focus:border-[oklch(0.51_0.22_264)] placeholder:text-muted-foreground/60"
               />
               {search && (
                 <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
@@ -203,7 +203,7 @@ export default function ReadingList() {
                 className={cn(
                   "w-full text-left px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-150",
                   !selectedPart
-                    ? "bg-[oklch(0.56_0.14_58)] text-white"
+                    ? "bg-[oklch(0.51_0.22_264)] text-white"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
@@ -238,7 +238,7 @@ export default function ReadingList() {
                     className={cn(
                       "w-full text-left px-3 py-2 rounded-sm text-sm transition-colors duration-150 flex items-center gap-2",
                       selectedPart === part.id
-                        ? "bg-[oklch(0.56_0.14_58)]/10 text-[oklch(0.56_0.14_58)] font-semibold border-l-2 border-[oklch(0.56_0.14_58)]"
+                        ? "bg-[oklch(0.51_0.22_264)]/10 text-[oklch(0.51_0.22_264)] font-semibold border-l-2 border-[oklch(0.51_0.22_264)]"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     )}
                   >
@@ -252,7 +252,7 @@ export default function ReadingList() {
                     <div className="ml-5 mt-0.5 space-y-0.5 mb-1">
                       {part.categories.map((cat, ci) => (
                         <div key={ci} className="flex items-center gap-2 px-3 py-1.5 text-xs text-muted-foreground">
-                          <span className="w-1 h-1 rounded-full bg-[oklch(0.56_0.14_58)]/40 shrink-0" />
+                          <span className="w-1 h-1 rounded-full bg-[oklch(0.51_0.22_264)]/40 shrink-0" />
                           <span className="truncate">{cat.name}</span>
                           <span className="font-mono-custom text-[10px] ml-auto opacity-50">{cat.books.length}</span>
                         </div>
@@ -269,7 +269,7 @@ export default function ReadingList() {
         <div className="lg:hidden fixed bottom-4 right-4 z-30">
           <button
             onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center gap-2 bg-[oklch(0.56_0.14_58)] text-white px-4 py-2.5 rounded-full shadow-lg text-sm font-semibold"
+            className="flex items-center gap-2 bg-[oklch(0.51_0.22_264)] text-white px-4 py-2.5 rounded-full shadow-lg text-sm font-semibold"
           >
             <Filter size={14} />
             Filter
@@ -287,7 +287,7 @@ export default function ReadingList() {
               {(search || selectedPart) && (
                 <button
                   onClick={() => { setSearch(""); setSelectedPart(null); }}
-                  className="ml-3 text-xs text-[oklch(0.56_0.14_58)] hover:underline font-medium"
+                  className="ml-3 text-xs text-[oklch(0.51_0.22_264)] hover:underline font-medium"
                 >
                   Clear filters
                 </button>

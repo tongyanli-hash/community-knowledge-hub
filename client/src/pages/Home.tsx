@@ -1,6 +1,6 @@
 /*
- * DESIGN SYSTEM: Warm & Welcoming
- * Home page: Full-bleed warm library hero, cozy amber tones
+ * DESIGN SYSTEM: Modern Clean
+ * Home page: Full-bleed hero, modern indigo accent
  * Stats bar, feature cards, community CTA
  */
 
@@ -62,8 +62,8 @@ export default function Home() {
           alt="Library reading room"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Warm amber-tinted overlay — left side heavier for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.14_0.04_48)]/85 via-[oklch(0.14_0.04_48)]/55 to-[oklch(0.14_0.04_48)]/15" />
+        {/* Dark overlay — left side heavier for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.10_0.02_264)]/90 via-[oklch(0.10_0.02_264)]/60 to-[oklch(0.10_0.02_264)]/10" />
 
         <div className="relative h-full flex flex-col justify-end pb-16 px-8 lg:px-16 max-w-3xl">
           <div className="animate-fade-in-up">
@@ -72,21 +72,21 @@ export default function Home() {
             </span>
             <h1 className="font-display text-5xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
               Learn Together,<br />
-              <em className="not-italic text-[oklch(0.88_0.06_75)]">Grow Further</em>
+              <em className="not-italic text-[oklch(0.65_0.18_264)]">Grow Further</em>
             </h1>
             <p className="text-white/75 text-lg leading-relaxed max-w-xl mb-8">
               A curated knowledge platform for entrepreneurs and business builders. Explore our reading list, share insights, and connect with a community of serious learners.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/reading-list">
-                <button className="flex items-center gap-2 bg-[oklch(0.56_0.14_58)] hover:bg-[oklch(0.50_0.13_58)] text-white px-6 py-3 text-sm font-semibold rounded-sm transition-colors duration-150">
+                <button className="flex items-center gap-2 bg-[oklch(0.51_0.22_264)] hover:bg-[oklch(0.44_0.20_264)] text-white px-6 py-3 text-sm font-semibold rounded-lg transition-colors duration-150">
                   <BookOpen size={16} />
                   Explore Reading List
                   <ArrowRight size={14} />
                 </button>
               </Link>
               <Link href="/community">
-                <button className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3 text-sm font-semibold rounded-sm transition-colors duration-150 backdrop-blur-sm">
+                <button className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3 text-sm font-semibold rounded-lg transition-colors duration-150 backdrop-blur-sm">
                   <Users size={16} />
                   Join Community
                 </button>
@@ -97,11 +97,11 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-[oklch(0.24_0.05_48)] text-white">
+      <section className="bg-[oklch(0.13_0.02_264)] text-white">
         <div className="max-w-5xl mx-auto px-8 py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <div key={i} className="text-center lg:text-left border-l border-white/10 pl-6 first:border-l-0 first:pl-0 lg:first:border-l lg:first:pl-6">
-              <div className="font-display text-3xl font-bold text-[oklch(0.88_0.06_75)]">{stat.value}</div>
+              <div className="font-display text-3xl font-bold text-[oklch(0.65_0.18_264)]">{stat.value}</div>
               <div className="font-mono-custom text-xs text-white/50 uppercase tracking-widest mt-1">{stat.label}</div>
             </div>
           ))}
@@ -111,7 +111,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20 px-8 lg:px-16 max-w-6xl mx-auto">
         <div className="mb-12">
-          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.56_0.14_58)] mb-3 block">What We Offer</span>
+          <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.51_0.22_264)] mb-3 block">What We Offer</span>
           <h2 className="font-display text-4xl font-bold text-foreground">
             Everything you need to<br />accelerate your learning
           </h2>
@@ -123,16 +123,16 @@ export default function Home() {
             return (
               <div
                 key={i}
-                className="group bg-card border border-border rounded-lg p-8 hover:shadow-[0_6px_28px_oklch(0.56_0.14_58/0.14)] hover:border-[oklch(0.78_0.12_65)]/60 transition-all duration-200 animate-fade-in-up"
+                className="group bg-card border border-border rounded-xl p-8 hover:shadow-[0_6px_28px_oklch(0.51_0.22_264/0.12)] hover:border-[oklch(0.65_0.18_264)]/50 transition-all duration-200 animate-fade-in-up"
                 style={{ animationDelay: `${i * 100}ms` }}
               >
-                <div className="w-10 h-10 bg-[oklch(0.56_0.14_58)]/10 rounded-sm flex items-center justify-center mb-5">
-                  <Icon size={20} className="text-[oklch(0.56_0.14_58)]" />
+                <div className="w-10 h-10 bg-[oklch(0.51_0.22_264)]/10 rounded-lg flex items-center justify-center mb-5">
+                  <Icon size={20} className="text-[oklch(0.51_0.22_264)]" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-foreground mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-6">{feature.description}</p>
                 <Link href={feature.href}>
-                  <button className="flex items-center gap-1.5 text-[oklch(0.56_0.14_58)] text-sm font-semibold group-hover:gap-2.5 transition-all duration-150">
+                  <button className="flex items-center gap-1.5 text-[oklch(0.51_0.22_264)] text-sm font-semibold group-hover:gap-2.5 transition-all duration-150">
                     {feature.cta}
                     <ArrowRight size={14} />
                   </button>
@@ -144,15 +144,15 @@ export default function Home() {
       </section>
 
       {/* Knowledge Domains Spotlight */}
-      <section className="py-16 px-8 lg:px-16 bg-[oklch(0.97_0.015_78)]">
+      <section className="py-16 px-8 lg:px-16 bg-[oklch(0.965_0.003_264)]">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.56_0.14_58)] mb-2 block">Specialized Learning</span>
+              <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.51_0.22_264)] mb-2 block">Specialized Learning</span>
               <h2 className="font-display text-3xl font-bold text-foreground">Knowledge Domains</h2>
             </div>
             <Link href="/domains">
-              <button className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.56_0.14_58)] font-semibold hover:gap-2.5 transition-all">
+              <button className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.51_0.22_264)] font-semibold hover:gap-2.5 transition-all">
                 View all domains <ArrowRight size={14} />
               </button>
             </Link>
@@ -160,19 +160,19 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {domains.map((domain) => (
               <Link key={domain.id} href={domain.status === "active" ? `/domains/${domain.slug}` : "/domains"}>
-                <div className={`group relative border rounded-sm p-5 transition-all duration-200 overflow-hidden ${
+                <div className={`group relative border rounded-xl p-5 transition-all duration-200 overflow-hidden ${
                   domain.status === "active"
-                    ? "border-border bg-card hover:border-[oklch(0.56_0.14_58)]/50 hover:shadow-md cursor-pointer"
+                    ? "border-border bg-card hover:border-[oklch(0.51_0.22_264)]/50 hover:shadow-md cursor-pointer"
                     : "border-border/40 bg-muted/20 opacity-60 cursor-default"
                 }`}>
                   <div className="absolute top-0 right-0 w-20 h-20 rounded-full -translate-y-1/2 translate-x-1/2 opacity-10" style={{ background: domain.color }} />
-                  <div className="w-8 h-8 rounded-sm flex items-center justify-center mb-3" style={{ background: `${domain.color}20` }}>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ background: `${domain.color}20` }}>
                     <Database size={15} style={{ color: domain.color }} />
                   </div>
-                  <h3 className="font-display text-sm font-bold text-foreground mb-1 group-hover:text-[oklch(0.56_0.14_58)] transition-colors">{domain.title}</h3>
+                  <h3 className="font-display text-sm font-bold text-foreground mb-1 group-hover:text-[oklch(0.51_0.22_264)] transition-colors">{domain.title}</h3>
                   <p className="text-xs text-muted-foreground leading-snug mb-3">{domain.subtitle}</p>
                   {domain.status === "active" ? (
-                    <span className="font-mono-custom text-[10px] bg-[oklch(0.56_0.14_58)]/10 text-[oklch(0.56_0.14_58)] px-2 py-0.5 rounded-sm uppercase tracking-wider">Available</span>
+                    <span className="font-mono-custom text-[10px] bg-[oklch(0.51_0.22_264)]/10 text-[oklch(0.51_0.22_264)] px-2 py-0.5 rounded-sm uppercase tracking-wider">Available</span>
                   ) : (
                     <span className="font-mono-custom text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-sm uppercase tracking-wider">Coming Soon</span>
                   )}
@@ -190,10 +190,10 @@ export default function Home() {
           alt="Community collaboration"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[oklch(0.24_0.05_48)]/85" />
+        <div className="absolute inset-0 bg-[oklch(0.13_0.02_264)]/85" />
         <div className="relative py-20 px-8 lg:px-16 max-w-6xl mx-auto">
           <div className="max-w-2xl">
-            <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.88_0.06_75)] mb-4 block">Our Mission</span>
+            <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.65_0.18_264)] mb-4 block">Our Mission</span>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-6">
               Knowledge shared is knowledge multiplied
             </h2>
@@ -209,14 +209,14 @@ export default function Home() {
                 const Icon = item.icon;
                 return (
                   <div key={i} className="flex flex-col items-start gap-2">
-                    <Icon size={20} className="text-[oklch(0.88_0.06_75)]" />
+                    <Icon size={20} className="text-[oklch(0.65_0.18_264)]" />
                     <span className="text-white/80 text-sm font-medium">{item.label}</span>
                   </div>
                 );
               })}
             </div>
             <Link href="/community">
-              <button className="flex items-center gap-2 bg-[oklch(0.88_0.06_75)] hover:bg-[oklch(0.85_0.05_80)] text-[oklch(0.24_0.05_48)] px-6 py-3 text-sm font-bold rounded-sm transition-colors duration-150">
+              <button className="flex items-center gap-2 bg-white hover:bg-white/90 text-[oklch(0.13_0.02_264)] px-6 py-3 text-sm font-bold rounded-lg transition-colors duration-150">
                 Join the Community
                 <ArrowRight size={14} />
               </button>
@@ -226,10 +226,10 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[oklch(0.18_0.04_48)] text-white/50 py-10 px-8 lg:px-16">
+      <footer className="bg-[oklch(0.10_0.02_264)] text-white/50 py-10 px-8 lg:px-16">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded bg-[oklch(0.56_0.14_58)] flex items-center justify-center">
+            <div className="w-7 h-7 rounded bg-[oklch(0.51_0.22_264)] flex items-center justify-center">
               <BookOpen size={14} className="text-white" />
             </div>
             <span className="font-display font-bold text-white/80 text-sm">Community Knowledge Hub</span>

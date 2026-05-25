@@ -13,7 +13,7 @@ export default function NotFound() {
         </p>
         <div className="flex gap-3">
           <Link href="/">
-            <button className="flex items-center gap-2 bg-[oklch(0.56_0.14_58)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-[oklch(0.50_0.13_58)] transition-colors">
+            <button className="flex items-center gap-2 bg-[oklch(0.51_0.22_264)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-[oklch(0.44_0.20_264)] transition-colors">
               <ArrowLeft size={14} />
               Back to Home
             </button>

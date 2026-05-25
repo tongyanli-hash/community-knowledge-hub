@@ -1,5 +1,5 @@
 /*
- * DESIGN SYSTEM: Warm & Welcoming
+ * DESIGN SYSTEM: Modern Clean
  * Resources page: Frameworks, articles, templates, tools
  */
 
@@ -107,7 +107,7 @@ export default function Resources() {
   return (
     <Layout>
       {/* Page Header */}
-      <div className="bg-gradient-to-br from-[oklch(0.24_0.05_48)] to-[oklch(0.32_0.06_52)] px-8 py-12">
+      <div className="bg-gradient-to-br from-[oklch(0.13_0.02_264)] to-[oklch(0.20_0.025_264)] px-8 py-12">
         <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-white/40 mb-2 block">Community Library</span>
         <h1 className="font-display text-4xl font-bold text-white mb-3">Resources</h1>
         <p className="text-white/60 text-sm max-w-xl">
@@ -123,12 +123,12 @@ export default function Resources() {
             return (
               <div
                 key={i}
-                className="bg-card border border-border rounded-lg p-4 flex items-center gap-3 hover:border-[oklch(0.78_0.12_65)]/60 hover:shadow-[0_3px_16px_oklch(0.56_0.14_58/0.10)] transition-all cursor-pointer animate-fade-in-up"
+                className="bg-card border border-border rounded-lg p-4 flex items-center gap-3 hover:border-[oklch(0.65_0.18_264)]/60 hover:shadow-[0_3px_16px_oklch(0.51_0.22_264/0.10)] transition-all cursor-pointer animate-fade-in-up"
                 style={{ animationDelay: `${i * 60}ms`, opacity: 0, animationFillMode: 'forwards' }}
                 onClick={() => toast.info("Feature coming soon — resource filtering is in development.")}
               >
-                <div className="w-9 h-9 bg-[oklch(0.56_0.14_58)]/10 rounded-sm flex items-center justify-center shrink-0">
-                  <Icon size={16} className="text-[oklch(0.56_0.14_58)]" />
+                <div className="w-9 h-9 bg-[oklch(0.51_0.22_264)]/10 rounded-sm flex items-center justify-center shrink-0">
+                  <Icon size={16} className="text-[oklch(0.51_0.22_264)]" />
                 </div>
                 <div>
                   <div className="font-display font-bold text-lg text-foreground leading-none">{cat.count}</div>
@@ -148,7 +148,7 @@ export default function Resources() {
             {resources.filter(r => r.featured).map((resource, i) => (
               <div
                 key={i}
-                className="bg-card border border-border rounded-lg p-5 hover:border-[oklch(0.78_0.12_65)]/60 hover:shadow-[0_4px_20px_oklch(0.56_0.14_58/0.12)] transition-all duration-200 cursor-pointer group animate-fade-in-up"
+                className="bg-card border border-border rounded-lg p-5 hover:border-[oklch(0.65_0.18_264)]/60 hover:shadow-[0_4px_20px_oklch(0.51_0.22_264/0.12)] transition-all duration-200 cursor-pointer group animate-fade-in-up"
                 style={{ animationDelay: `${i * 60}ms`, opacity: 0, animationFillMode: 'forwards' }}
                 onClick={() => toast.info("Feature coming soon — full resource library is in development.")}
               >
@@ -158,14 +158,14 @@ export default function Resources() {
                       {typeLabels[resource.type]}
                     </span>
                     {resource.source === "Community" && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-mono-custom bg-[oklch(0.56_0.14_58)]/10 text-[oklch(0.56_0.14_58)] uppercase tracking-wide">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-mono-custom bg-[oklch(0.51_0.22_264)]/10 text-[oklch(0.51_0.22_264)] uppercase tracking-wide">
                         Community
                       </span>
                     )}
                   </div>
-                  <ExternalLink size={14} className="text-muted-foreground/40 group-hover:text-[oklch(0.56_0.14_58)] transition-colors shrink-0" />
+                  <ExternalLink size={14} className="text-muted-foreground/40 group-hover:text-[oklch(0.51_0.22_264)] transition-colors shrink-0" />
                 </div>
-                <h3 className="font-display text-base font-bold text-foreground mb-2 group-hover:text-[oklch(0.56_0.14_58)] transition-colors">
+                <h3 className="font-display text-base font-bold text-foreground mb-2 group-hover:text-[oklch(0.51_0.22_264)] transition-colors">
                   {resource.title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-3">
@@ -193,7 +193,7 @@ export default function Resources() {
             {resources.map((resource, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 py-4 px-4 border border-border rounded-lg hover:border-[oklch(0.78_0.12_65)]/60 hover:bg-[oklch(0.56_0.14_58)]/[0.025] transition-all duration-150 cursor-pointer group animate-fade-in-up"
+                className="flex items-start gap-4 py-4 px-4 border border-border rounded-lg hover:border-[oklch(0.65_0.18_264)]/60 hover:bg-[oklch(0.51_0.22_264)]/[0.025] transition-all duration-150 cursor-pointer group animate-fade-in-up"
                 style={{ animationDelay: `${Math.min(i * 30, 200)}ms`, opacity: 0, animationFillMode: 'forwards' }}
                 onClick={() => toast.info("Feature coming soon — full resource library is in development.")}
               >
@@ -205,7 +205,7 @@ export default function Resources() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-sm font-semibold text-foreground group-hover:text-[oklch(0.56_0.14_58)] transition-colors">
+                    <h3 className="text-sm font-semibold text-foreground group-hover:text-[oklch(0.51_0.22_264)] transition-colors">
                       {resource.title}
                     </h3>
                   </div>
@@ -215,7 +215,7 @@ export default function Resources() {
                   <span className={`hidden sm:inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-mono-custom font-medium uppercase tracking-wide ${typeColors[resource.type]}`}>
                     {typeLabels[resource.type]}
                   </span>
-                  <ArrowRight size={13} className="text-muted-foreground/40 group-hover:text-[oklch(0.56_0.14_58)] transition-colors" />
+                  <ArrowRight size={13} className="text-muted-foreground/40 group-hover:text-[oklch(0.51_0.22_264)] transition-colors" />
                 </div>
               </div>
             ))}
@@ -223,7 +223,7 @@ export default function Resources() {
         </div>
 
         {/* Contribute CTA */}
-        <div className="mt-10 p-6 bg-[oklch(0.56_0.14_58)]/5 border border-[oklch(0.78_0.12_65)]/40 rounded-xl">
+        <div className="mt-10 p-6 bg-[oklch(0.51_0.22_264)]/5 border border-[oklch(0.65_0.18_264)]/40 rounded-xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
             <div className="flex-1">
               <h3 className="font-display text-lg font-bold text-foreground mb-1">Contribute a Resource</h3>
@@ -233,7 +233,7 @@ export default function Resources() {
             </div>
             <button
               onClick={() => toast.info("Feature coming soon — resource submission is in development.")}
-              className="flex items-center gap-2 bg-[oklch(0.56_0.14_58)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-[oklch(0.50_0.13_58)] transition-colors shrink-0"
+              className="flex items-center gap-2 bg-[oklch(0.51_0.22_264)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-[oklch(0.44_0.20_264)] transition-colors shrink-0"
             >
               <Link2 size={14} />
               Submit Resource

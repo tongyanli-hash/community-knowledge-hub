@@ -1,5 +1,5 @@
 /*
- * DESIGN SYSTEM: Warm & Welcoming
+ * DESIGN SYSTEM: Modern Clean
  * Knowledge Domains hub — grid of domain cards with status, stats, and cross-links to reading list
  */
 import Layout from "@/components/Layout";
@@ -26,7 +26,7 @@ export default function Domains() {
       {/* Hero */}
       <div className="relative h-56 overflow-hidden">
         <img src={DOMAINS_HERO_IMG} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.14_0.04_48)]/85 via-[oklch(0.14_0.04_48)]/60 to-[oklch(0.14_0.04_48)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.13_0.02_264)]/85 via-[oklch(0.13_0.02_264)]/60 to-[oklch(0.13_0.02_264)]/25" />
         <div className="relative h-full flex flex-col justify-end pb-10 px-8 lg:px-12">
           <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-white/50 mb-2 block">
             Specialized Learning
@@ -55,7 +55,7 @@ export default function Domains() {
                 const Icon = DOMAIN_ICONS[domain.icon] ?? Database;
                 return (
                   <Link key={domain.id} href={`/domains/${domain.slug}`}>
-                    <div className="group relative border border-border rounded-lg p-6 hover:border-[oklch(0.78_0.12_65)] hover:shadow-[0_4px_20px_oklch(0.56_0.14_58/0.12)] transition-all duration-200 cursor-pointer bg-card overflow-hidden">
+                    <div className="group relative border border-border rounded-lg p-6 hover:border-[oklch(0.65_0.18_264)] hover:shadow-[0_4px_20px_oklch(0.51_0.22_264/0.12)] transition-all duration-200 cursor-pointer bg-card overflow-hidden">
                       {/* Background accent */}
                       <div
                         className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-5 -translate-y-1/2 translate-x-1/2 transition-opacity group-hover:opacity-10"
@@ -69,14 +69,14 @@ export default function Domains() {
                           <Icon size={18} style={{ color: domain.color }} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h2 className="font-display text-lg font-bold text-foreground group-hover:text-[oklch(0.56_0.14_58)] transition-colors">
+                          <h2 className="font-display text-lg font-bold text-foreground group-hover:text-[oklch(0.51_0.22_264)] transition-colors">
                             {domain.title}
                           </h2>
                           <p className="text-xs text-muted-foreground mt-0.5">{domain.subtitle}</p>
                         </div>
                         <ArrowRight
                           size={16}
-                          className="text-muted-foreground/30 group-hover:text-[oklch(0.56_0.14_58)] group-hover:translate-x-1 transition-all shrink-0 mt-1"
+                          className="text-muted-foreground/30 group-hover:text-[oklch(0.51_0.22_264)] group-hover:translate-x-1 transition-all shrink-0 mt-1"
                         />
                       </div>
 
@@ -176,7 +176,7 @@ export default function Domains() {
             Is there a knowledge area you'd like to see covered? We're building out new domains based on community interest.
           </p>
           <Link href="/community">
-            <button className="flex items-center gap-2 mx-auto bg-[oklch(0.56_0.14_58)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-[oklch(0.50_0.13_58)] transition-colors">
+            <button className="flex items-center gap-2 mx-auto bg-[oklch(0.51_0.22_264)] text-white px-5 py-2.5 text-sm font-semibold rounded-sm hover:bg-[oklch(0.44_0.20_264)] transition-colors">
               Share in Community
               <ArrowRight size={14} />
             </button>

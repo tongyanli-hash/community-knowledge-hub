@@ -1,5 +1,5 @@
 /*
- * DESIGN SYSTEM: Warm & Welcoming
+ * DESIGN SYSTEM: Modern Clean
  * Layout: Fixed left sidebar (240px) + main content area
  * Sidebar: Deep walnut/espresso background, warm amber accent on active items
  */

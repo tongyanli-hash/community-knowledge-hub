@@ -1,5 +1,5 @@
 /*
- * DESIGN SYSTEM: Warm & Welcoming
+ * DESIGN SYSTEM: Modern Clean
  * Community page: Discussion topics, member activity, upcoming events
  */
 
@@ -91,7 +91,7 @@ export default function Community() {
   return (
     <Layout>
       {/* Page Header */}
-      <div className="bg-gradient-to-br from-[oklch(0.24_0.05_48)] to-[oklch(0.32_0.06_52)] px-8 py-12">
+      <div className="bg-gradient-to-br from-[oklch(0.13_0.02_264)] to-[oklch(0.20_0.025_264)] px-8 py-12">
         <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-white/40 mb-2 block">Connect & Learn</span>
         <h1 className="font-display text-4xl font-bold text-white mb-3">Community</h1>
         <p className="text-white/60 text-sm max-w-xl">
@@ -107,7 +107,7 @@ export default function Community() {
               <h2 className="font-display text-xl font-bold text-foreground">Recent Discussions</h2>
               <button
                 onClick={() => toast.info("Feature coming soon — full discussion board is in development.")}
-                className="flex items-center gap-1.5 text-sm font-semibold text-[oklch(0.56_0.14_58)] hover:underline"
+                className="flex items-center gap-1.5 text-sm font-semibold text-[oklch(0.51_0.22_264)] hover:underline"
               >
                 View all
                 <ArrowRight size={13} />
@@ -118,7 +118,7 @@ export default function Community() {
               {discussions.map((disc, i) => (
                 <div
                   key={i}
-                  className="bg-card border border-border rounded-lg p-5 hover:border-[oklch(0.78_0.12_65)]/60 hover:shadow-[0_3px_16px_oklch(0.56_0.14_58/0.10)] transition-all duration-150 cursor-pointer group animate-fade-in-up"
+                  className="bg-card border border-border rounded-lg p-5 hover:border-[oklch(0.65_0.18_264)]/60 hover:shadow-[0_3px_16px_oklch(0.51_0.22_264/0.10)] transition-all duration-150 cursor-pointer group animate-fade-in-up"
                   style={{ animationDelay: `${i * 60}ms`, opacity: 0, animationFillMode: 'forwards' }}
                   onClick={() => toast.info("Feature coming soon — full discussion board is in development.")}
                 >
@@ -129,7 +129,7 @@ export default function Community() {
                           {disc.category}
                         </span>
                       </div>
-                      <h3 className="text-sm font-semibold text-foreground leading-snug mb-2 group-hover:text-[oklch(0.56_0.14_58)] transition-colors">
+                      <h3 className="text-sm font-semibold text-foreground leading-snug mb-2 group-hover:text-[oklch(0.51_0.22_264)] transition-colors">
                         {disc.title}
                       </h3>
                       <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">
@@ -157,10 +157,10 @@ export default function Community() {
             </div>
 
             {/* Start Discussion CTA */}
-            <div className="mt-6 p-5 bg-[oklch(0.56_0.14_58)]/5 border border-[oklch(0.78_0.12_65)]/40 rounded-xl">
+            <div className="mt-6 p-5 bg-[oklch(0.51_0.22_264)]/5 border border-[oklch(0.65_0.18_264)]/40 rounded-xl">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[oklch(0.56_0.14_58)]/20 flex items-center justify-center">
-                  <MessageSquare size={14} className="text-[oklch(0.56_0.14_58)]" />
+                <div className="w-8 h-8 rounded-full bg-[oklch(0.51_0.22_264)]/20 flex items-center justify-center">
+                  <MessageSquare size={14} className="text-[oklch(0.51_0.22_264)]" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">Start a new discussion</p>
@@ -168,7 +168,7 @@ export default function Community() {
                 </div>
                 <button
                   onClick={() => toast.info("Feature coming soon — discussion posting is in development.")}
-                  className="bg-[oklch(0.56_0.14_58)] text-white px-4 py-2 text-xs font-semibold rounded-sm hover:bg-[oklch(0.50_0.13_58)] transition-colors"
+                  className="bg-[oklch(0.51_0.22_264)] text-white px-4 py-2 text-xs font-semibold rounded-sm hover:bg-[oklch(0.44_0.20_264)] transition-colors"
                 >
                   Post
                 </button>
@@ -191,7 +191,7 @@ export default function Community() {
                   return (
                     <div key={i} className="flex items-center justify-between py-2 border-b border-border last:border-b-0">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Icon size={14} className="text-[oklch(0.56_0.14_58)]" />
+                        <Icon size={14} className="text-[oklch(0.51_0.22_264)]" />
                         {stat.label}
                       </div>
                       <span className="font-display font-bold text-foreground">{stat.value}</span>
@@ -207,7 +207,7 @@ export default function Community() {
                 <h3 className="font-display text-base font-bold text-foreground">Upcoming Events</h3>
                 <button
                   onClick={() => toast.info("Feature coming soon — full events calendar is in development.")}
-                  className="text-xs text-[oklch(0.56_0.14_58)] hover:underline font-medium"
+                  className="text-xs text-[oklch(0.51_0.22_264)] hover:underline font-medium"
                 >
                   View all
                 </button>
@@ -220,16 +220,16 @@ export default function Community() {
                     onClick={() => toast.info("Feature coming soon — event registration is in development.")}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-[oklch(0.56_0.14_58)]/10 rounded-sm flex flex-col items-center justify-center shrink-0">
-                        <span className="font-mono-custom text-[10px] text-[oklch(0.56_0.14_58)] font-bold leading-none">
+                      <div className="w-10 h-10 bg-[oklch(0.51_0.22_264)]/10 rounded-sm flex flex-col items-center justify-center shrink-0">
+                        <span className="font-mono-custom text-[10px] text-[oklch(0.51_0.22_264)] font-bold leading-none">
                           {event.date.split(" ")[1].replace(",", "")}
                         </span>
-                        <span className="font-mono-custom text-[9px] text-[oklch(0.56_0.14_58)]/70 uppercase">
+                        <span className="font-mono-custom text-[9px] text-[oklch(0.51_0.22_264)]/70 uppercase">
                           {event.date.split(" ")[0]}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold text-foreground leading-snug group-hover:text-[oklch(0.56_0.14_58)] transition-colors">
+                        <p className="text-xs font-semibold text-foreground leading-snug group-hover:text-[oklch(0.51_0.22_264)] transition-colors">
                           {event.title}
                         </p>
                         <div className="flex items-center gap-2 mt-1">
@@ -250,14 +250,14 @@ export default function Community() {
             </div>
 
             {/* Join CTA */}
-            <div className="bg-gradient-to-br from-[oklch(0.24_0.05_48)] to-[oklch(0.32_0.06_52)] text-white rounded-xl p-5">
+            <div className="bg-gradient-to-br from-[oklch(0.13_0.02_264)] to-[oklch(0.20_0.025_264)] text-white rounded-xl p-5">
               <h3 className="font-display text-base font-bold mb-2">Join the Community</h3>
               <p className="text-white/60 text-xs leading-relaxed mb-4">
                 Connect with 500+ entrepreneurs and business builders. Share your reading journey and grow together.
               </p>
               <button
                 onClick={() => toast.info("Feature coming soon — membership registration is in development.")}
-                className="w-full bg-[oklch(0.88_0.06_75)] text-[oklch(0.24_0.05_48)] py-2.5 text-sm font-bold rounded-sm hover:bg-[oklch(0.85_0.05_80)] transition-colors"
+                className="w-full bg-[oklch(0.65_0.18_264)] text-[oklch(0.13_0.02_264)] py-2.5 text-sm font-bold rounded-sm hover:bg-[oklch(0.58_0.20_264)] transition-colors"
               >
                 Apply for Membership
               </button>
