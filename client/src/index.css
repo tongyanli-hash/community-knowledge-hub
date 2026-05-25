@@ -2,7 +2,7 @@
  * DESIGN PHILOSOPHY: Modern Clean
  * Movement: Contemporary Product Design — crisp whites, deep slate, vibrant indigo accent
  * Palette: Pure white bg, near-black slate text, indigo-violet primary, cool gray muted
- * Typography: DM Serif Display (headlines) + Plus Jakarta Sans (body/UI) + DM Mono (labels/code)
+ * Typography: Syne (display/headlines) + Space Grotesk (body/UI) + Space Mono (labels/code)
  * Feel: Like a well-designed SaaS product — clean, confident, readable, and modern
  */
 
@@ -49,10 +49,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Modern font stack */
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-mono: 'DM Mono', 'Courier New', monospace;
+  /* Geometric & Techy font stack */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
 
   /* Indigo-violet primary */
   --color-indigo: oklch(0.51 0.22 264);
@@ -142,9 +142,9 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     color: var(--color-slate-950);
   }
   button:not(:disabled),
