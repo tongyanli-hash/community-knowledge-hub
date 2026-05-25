@@ -10,8 +10,9 @@ import Community from "./pages/Community";
 import Resources from "./pages/Resources";
 import Domains from "./pages/Domains";
 import DomainDetail from "./pages/DomainDetail";
-
+import Profile from "./pages/Profile";
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/domains/:slug" component={DomainDetail} />
       <Route path="/community" component={Community} />
       <Route path="/resources" component={Resources} />
+      <Route path="/profile" component={Profile} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

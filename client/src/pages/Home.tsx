@@ -5,6 +5,7 @@
  */
 
 import Layout from "@/components/Layout";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Link } from "wouter";
 import { BookOpen, Users, Archive, ArrowRight, TrendingUp, Lightbulb, Globe, Database } from "lucide-react";
 import { totalBookCount } from "@/data/readingList";
@@ -53,6 +54,10 @@ const stats = [
 ];
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  const { isAuthenticated } = useAuth();
+
   return (
     <Layout fullWidth>
       {/* Hero Section */}

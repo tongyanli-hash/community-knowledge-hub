@@ -117,7 +117,7 @@ export default function DomainDetail() {
               className="w-14 h-14 rounded-sm flex items-center justify-center shrink-0"
               style={{ background: `${domain.color}20` }}
             >
-              <Icon size={26} style={{ color: domain.color }} />
+              <span style={{ color: domain.color }}><Icon size={26} /></span>
             </div>
             <div>
               <h1 className="font-display text-4xl lg:text-5xl font-bold text-foreground leading-tight">

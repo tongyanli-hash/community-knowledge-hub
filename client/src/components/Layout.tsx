@@ -1,13 +1,19 @@
 /*
  * DESIGN SYSTEM: Modern Clean
  * Layout: Fixed left sidebar (240px) + main content area
- * Sidebar: Deep walnut/espresso background, warm amber accent on active items
+ * Sidebar: Deep slate background, indigo accent on active items
+ * Auth-aware footer: shows user avatar + profile link when signed in, sign-in CTA when not
  */
 
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { BookOpen, Home, Users, Archive, Menu, X, ChevronRight, Database, Globe } from "lucide-react";
+import {
+  BookOpen, Home, Users, Archive, Menu, X,
+  ChevronRight, Database, Globe, LogIn, LogOut, User
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { getLoginUrl } from "@/const";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
@@ -26,10 +32,67 @@ interface LayoutProps {
   fullWidth?: boolean;
 }
 
+function UserInitials({ name }: { name: string | null | undefined }) {
+  const initials = name
+    ? name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : "?";
+  return (
+    <div className="w-8 h-8 rounded-full bg-sidebar-primary flex items-center justify-center shrink-0 text-xs font-bold text-sidebar-primary-foreground">
+      {initials}
+    </div>
+  );
+}
+
 export default function Layout({ children, fullWidth = false }: LayoutProps) {
   const [location] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [domainsExpanded, setDomainsExpanded] = useState(location.startsWith("/domains"));
+  const { user, isAuthenticated, logout } = useAuth();
+
+  const SidebarFooter = () => {
+    if (isAuthenticated && user) {
+      return (
+        <div className="px-3 py-4 border-t border-sidebar-border space-y-1">
+          <Link href="/profile">
+            <div className={cn(
+              "flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm font-medium transition-all duration-150 cursor-pointer group",
+              location === "/profile"
+                ? "bg-sidebar-accent border-l-[3px] border-sidebar-primary text-sidebar-foreground pl-[calc(0.75rem-3px)]"
+                : "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+            )}>
+              <UserInitials name={user.name} />
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-semibold text-sidebar-foreground truncate">{user.name ?? "Member"}</div>
+                <div className="font-mono-custom text-[10px] text-sidebar-foreground/40 truncate">View Profile</div>
+              </div>
+              <ChevronRight size={12} className="text-sidebar-foreground/30 shrink-0" />
+            </div>
+          </Link>
+          <button
+            onClick={() => logout()}
+            className="w-full flex items-center gap-3 px-3 py-2 rounded-sm text-xs text-sidebar-foreground/50 hover:text-sidebar-foreground/80 hover:bg-sidebar-accent/40 transition-colors"
+          >
+            <LogOut size={13} />
+            Sign out
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <div className="px-4 py-5 border-t border-sidebar-border">
+        <a href={getLoginUrl()} className="block">
+          <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-sm bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-colors cursor-pointer group">
+            <LogIn size={15} className="text-sidebar-primary shrink-0" />
+            <div>
+              <div className="text-xs font-semibold text-sidebar-foreground">Sign In</div>
+              <div className="font-mono-custom text-[10px] text-sidebar-foreground/40">Track your reading</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen flex bg-background">
@@ -109,12 +172,8 @@ export default function Layout({ children, fullWidth = false }: LayoutProps) {
           })}
         </nav>
 
-        {/* Footer */}
-        <div className="px-6 py-5 border-t border-sidebar-border">
-          <p className="font-mono-custom text-[10px] text-sidebar-foreground/30 uppercase tracking-widest">
-            Est. 2024
-          </p>
-        </div>
+        {/* Auth-aware Footer */}
+        <SidebarFooter />
       </aside>
 
       {/* Mobile Header */}
@@ -127,12 +186,26 @@ export default function Layout({ children, fullWidth = false }: LayoutProps) {
             <span className="font-display font-bold text-sm text-sidebar-foreground">Knowledge Hub</span>
           </div>
         </Link>
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 rounded text-sidebar-foreground/70 hover:text-sidebar-foreground"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-2">
+          {isAuthenticated && user ? (
+            <Link href="/profile">
+              <UserInitials name={user.name} />
+            </Link>
+          ) : (
+            <a href={getLoginUrl()}>
+              <div className="flex items-center gap-1.5 text-xs text-sidebar-foreground/70 hover:text-sidebar-foreground px-2 py-1 rounded hover:bg-sidebar-accent/50 transition-colors">
+                <LogIn size={14} />
+                Sign In
+              </div>
+            </a>
+          )}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 rounded text-sidebar-foreground/70 hover:text-sidebar-foreground"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </header>
 
       {/* Mobile Nav Overlay */}
@@ -151,6 +224,14 @@ export default function Layout({ children, fullWidth = false }: LayoutProps) {
                 </Link>
               );
             })}
+            {isAuthenticated && (
+              <Link href="/profile">
+                <div className={cn("flex items-center gap-3 px-4 py-3 rounded text-base font-medium", location === "/profile" ? "bg-sidebar-accent text-sidebar-foreground" : "text-sidebar-foreground/70")}>
+                  <User size={18} />
+                  <span>My Profile</span>
+                </div>
+              </Link>
+            )}
             <div className="ml-4 pl-4 border-l border-sidebar-border space-y-1">
               {domainSubItems.map((sub) => (
                 <Link key={sub.href} href={sub.href}>

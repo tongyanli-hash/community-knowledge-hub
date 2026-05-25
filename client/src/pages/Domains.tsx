@@ -66,7 +66,7 @@ export default function Domains() {
                           className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
                           style={{ background: `${domain.color}20` }}
                         >
-                          <Icon size={18} style={{ color: domain.color }} />
+                          <span style={{ color: domain.color }}><Icon size={18} /></span>
                         </div>
                         <div className="flex-1 min-w-0">
                           <h2 className="font-display text-lg font-bold text-foreground group-hover:text-[oklch(0.51_0.22_264)] transition-colors">
@@ -142,7 +142,7 @@ export default function Domains() {
                         className="w-8 h-8 rounded-sm flex items-center justify-center shrink-0"
                         style={{ background: `${domain.color}15` }}
                       >
-                        <Icon size={15} style={{ color: domain.color }} className="opacity-60" />
+                        <span style={{ color: domain.color }} className="opacity-60"><Icon size={15} /></span>
                       </div>
                       <div>
                         <h3 className="font-display text-sm font-bold text-foreground/70">{domain.title}</h3>
