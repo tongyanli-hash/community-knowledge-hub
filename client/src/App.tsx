@@ -11,6 +11,7 @@ import Resources from "./pages/Resources";
 import Domains from "./pages/Domains";
 import DomainDetail from "./pages/DomainDetail";
 import Profile from "./pages/Profile";
+import SpikeAuth from "./pages/SpikeAuth";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/community" component={Community} />
       <Route path="/resources" component={Resources} />
       <Route path="/profile" component={Profile} />
+      <Route path="/spike-auth" component={SpikeAuth} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

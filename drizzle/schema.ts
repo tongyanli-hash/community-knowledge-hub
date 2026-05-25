@@ -1,5 +1,9 @@
 import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
+// better-auth spike: surface its tables (user/session/account/verification)
+// so drizzle-kit migrations create them. See drizzle/auth-schema.ts.
+export * from "./auth-schema";
+
 /**
  * Core user table backing auth flow.
  * Extend this file with additional tables as your product grows.
