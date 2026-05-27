@@ -7,12 +7,11 @@
 import { useState, useMemo } from "react";
 import Layout from "@/components/Layout";
 import { readingListParts, totalBookCount, type Part, type Book } from "@/data/readingList";
-import { domains } from "@/data/domains";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
 import {
-  Search, BookOpen, Filter, X, Database, ArrowRight,
+  Search, BookOpen, Filter, X,
   CheckCircle2, Clock, BookMarked, ChevronDown, LogIn
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -276,10 +275,6 @@ function PartSection({
     globalOffset += readingListParts[i].totalBooks;
   }
 
-  const relatedDomains = domains.filter(
-    (d) => d.status === "active" && d.relatedReadingListParts.some((rp) => part.shortName.includes(rp) || rp.includes(part.shortName))
-  );
-
   // Count completed books in this part
   const partBooks = part.categories.flatMap(c => c.books);
   const completedCount = partBooks.filter(b => statusMap[`book-${b.book}`] === "completed").length;
@@ -316,20 +311,6 @@ function PartSection({
           </div>
         </div>
       </div>
-
-      {relatedDomains.length > 0 && (
-        <div className="mb-6 flex flex-wrap gap-2">
-          {relatedDomains.map((domain) => (
-            <Link key={domain.id} href={`/domains/${domain.slug}`}>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border text-xs font-medium transition-all hover:shadow-sm" style={{ borderColor: `${domain.color}40`, background: `${domain.color}08`, color: domain.color }}>
-                <Database size={11} />
-                <span>Related Domain: {domain.title}</span>
-                <ArrowRight size={10} />
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
 
       {part.categories.map((cat, ci) => {
         const catOffset = globalOffset + part.categories.slice(0, ci).reduce((sum, c) => sum + c.books.length, 0);
@@ -451,7 +432,7 @@ export default function ReadingList() {
           <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-white/50 mb-2">Curated Collection</span>
           <h1 className="font-display text-3xl lg:text-5xl font-bold text-white">Reading List</h1>
           <p className="text-white/60 text-sm mt-2">
-            {totalBookCount} books across 8 domains of business knowledge
+            {totalBookCount} curated books across business and entrepreneurship
           </p>
           {isAuthenticated && totalCompleted > 0 && (
             <div className="flex items-center gap-3 mt-3">
@@ -532,20 +513,6 @@ export default function ReadingList() {
                 All Parts
                 <span className="ml-auto float-right font-mono-custom text-xs opacity-70">{totalBookCount}</span>
               </button>
-            </div>
-
-            {/* Knowledge Domains quick links */}
-            <div className="mb-5 pt-4 border-t border-border">
-              <p className="font-mono-custom text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Knowledge Domains</p>
-              {domains.filter(d => d.status === "active").map((domain) => (
-                <Link key={domain.id} href={`/domains/${domain.slug}`}>
-                  <div className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors mb-0.5">
-                    <Database size={11} style={{ color: domain.color }} />
-                    <span>{domain.title}</span>
-                    <ArrowRight size={9} className="ml-auto opacity-40" />
-                  </div>
-                </Link>
-              ))}
             </div>
 
             {/* Part filters */}

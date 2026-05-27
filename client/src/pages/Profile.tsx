@@ -65,7 +65,7 @@ export default function Profile() {
           </div>
           <h1 className="font-display text-3xl font-bold text-foreground mb-3">Sign in to view your profile</h1>
           <p className="text-muted-foreground text-sm max-w-sm mb-8">
-            Track your reading progress, save bookmarks, and see your learning journey across all knowledge domains.
+            Track your reading progress, save bookmarks, and see your learning journey across the reading list.
           </p>
           <a href={getLoginUrl()}>
             <button className="flex items-center gap-2 bg-[oklch(0.51_0.22_264)] text-white px-6 py-3 text-sm font-semibold rounded-lg hover:bg-[oklch(0.44_0.20_264)] transition-colors">

@@ -8,8 +8,6 @@ import Home from "./pages/Home";
 import ReadingList from "./pages/ReadingList";
 import Community from "./pages/Community";
 import Resources from "./pages/Resources";
-import Domains from "./pages/Domains";
-import DomainDetail from "./pages/DomainDetail";
 import Profile from "./pages/Profile";
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -17,8 +15,6 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/reading-list" component={ReadingList} />
-      <Route path="/domains" component={Domains} />
-      <Route path="/domains/:slug" component={DomainDetail} />
       <Route path="/community" component={Community} />
       <Route path="/resources" component={Resources} />
       <Route path="/profile" component={Profile} />

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
@@ -10,9 +11,58 @@ import {
   getBookmarks,
   toggleBookmark,
 } from "./db";
+import {
+  recommendBooks,
+  rateLimitOk,
+  isConfigured,
+  RecommenderError,
+  MAX_QUERY_LENGTH,
+} from "./bookRecommender";
+
+function clientIp(req: { headers: Record<string, unknown>; ip?: string; socket?: { remoteAddress?: string } }): string {
+  const fwd = req.headers["x-forwarded-for"];
+  if (typeof fwd === "string") return fwd.split(",")[0].trim();
+  return req.ip || req.socket?.remoteAddress || "unknown";
+}
 
 export const appRouter = router({
   system: systemRouter,
+
+  // ─── AI book recommender (public, landing page) ──────────────────────────
+  recommend: router({
+    /** Recommend books from the catalog based on a reader's mood / intent. */
+    books: publicProcedure
+      .input(z.object({ query: z.string().trim().min(1).max(MAX_QUERY_LENGTH) }))
+      .mutation(async ({ input, ctx }) => {
+        if (!isConfigured()) {
+          throw new TRPCError({
+            code: "PRECONDITION_FAILED",
+            message: "The recommender isn't configured yet (missing API key).",
+          });
+        }
+        if (!rateLimitOk(clientIp(ctx.req))) {
+          throw new TRPCError({
+            code: "TOO_MANY_REQUESTS",
+            message: "You're going a bit fast — please wait a moment and try again.",
+          });
+        }
+        try {
+          const recommendations = await recommendBooks(input.query);
+          return { recommendations };
+        } catch (err) {
+          if (err instanceof RecommenderError) {
+            throw new TRPCError({
+              code: err.kind === "rate_limit" ? "TOO_MANY_REQUESTS" : "INTERNAL_SERVER_ERROR",
+              message: err.message,
+            });
+          }
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "The reading guide is temporarily unavailable. Please try again later.",
+          });
+        }
+      }),
+  }),
 
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
