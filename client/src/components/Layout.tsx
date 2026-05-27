@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import {
   BookOpen, Home, Users, Archive, Menu, X,
-  ChevronRight, Database, Globe, LogIn, LogOut, User
+  ChevronRight, LogIn, LogOut, User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -18,13 +18,8 @@ import { getLoginUrl } from "@/const";
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/reading-list", label: "Reading List", icon: BookOpen },
-  { href: "/domains", label: "Knowledge Domains", icon: Database },
   { href: "/community", label: "Community", icon: Users },
   { href: "/resources", label: "Resources", icon: Archive },
-];
-
-const domainSubItems = [
-  { href: "/domains/data-engineering", label: "Data Engineering" },
 ];
 
 interface LayoutProps {
@@ -46,7 +41,6 @@ function UserInitials({ name }: { name: string | null | undefined }) {
 export default function Layout({ children, fullWidth = false }: LayoutProps) {
   const [location] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [domainsExpanded, setDomainsExpanded] = useState(location.startsWith("/domains"));
   const { user, isAuthenticated, logout } = useAuth();
 
   const SidebarFooter = () => {
@@ -122,7 +116,6 @@ export default function Layout({ children, fullWidth = false }: LayoutProps) {
           {navItems.map((item) => {
             const isActive = item.href === "/" ? location === "/" : location.startsWith(item.href);
             const Icon = item.icon;
-            const isDomains = item.href === "/domains";
             return (
               <div key={item.href}>
                 <div
@@ -132,41 +125,13 @@ export default function Layout({ children, fullWidth = false }: LayoutProps) {
                       ? "bg-sidebar-accent border-l-[3px] border-sidebar-primary text-sidebar-foreground pl-[calc(0.75rem-3px)]"
                       : "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
                   )}
-                  onClick={() => isDomains && setDomainsExpanded((p) => !p)}
                 >
-                  {isDomains ? (
-                    <>
-                      <Icon size={16} className={cn(isActive ? "text-sidebar-primary" : "text-sidebar-foreground/50 group-hover:text-sidebar-foreground/80")} />
-                      <Link href={item.href} className="flex-1"><span>{item.label}</span></Link>
-                      <ChevronRight size={12} className={cn("ml-auto transition-transform duration-200", domainsExpanded && "rotate-90", isActive ? "text-sidebar-primary/60" : "text-sidebar-foreground/30")} />
-                    </>
-                  ) : (
-                    <Link href={item.href} className="flex items-center gap-3 w-full">
-                      <Icon size={16} className={cn(isActive ? "text-sidebar-primary" : "text-sidebar-foreground/50 group-hover:text-sidebar-foreground/80")} />
-                      <span className="flex-1">{item.label}</span>
-                      {isActive && <ChevronRight size={12} className="ml-auto text-sidebar-primary/60" />}
-                    </Link>
-                  )}
+                  <Link href={item.href} className="flex items-center gap-3 w-full">
+                    <Icon size={16} className={cn(isActive ? "text-sidebar-primary" : "text-sidebar-foreground/50 group-hover:text-sidebar-foreground/80")} />
+                    <span className="flex-1">{item.label}</span>
+                    {isActive && <ChevronRight size={12} className="ml-auto text-sidebar-primary/60" />}
+                  </Link>
                 </div>
-                {isDomains && domainsExpanded && (
-                  <div className="ml-6 mt-0.5 space-y-0.5 border-l border-sidebar-border pl-3">
-                    {domainSubItems.map((sub) => {
-                      const isSubActive = location === sub.href;
-                      return (
-                        <Link key={sub.href} href={sub.href}>
-                          <div className={cn("flex items-center gap-2 px-2 py-2 rounded-sm text-xs font-medium transition-colors", isSubActive ? "text-sidebar-foreground bg-sidebar-accent" : "text-sidebar-foreground/55 hover:text-sidebar-foreground hover:bg-sidebar-accent/40")}>
-                            <Database size={11} className={isSubActive ? "text-sidebar-primary" : "text-sidebar-foreground/40"} />
-                            {sub.label}
-                          </div>
-                        </Link>
-                      );
-                    })}
-                    <div className="flex items-center gap-2 px-2 py-2 text-xs text-sidebar-foreground/30">
-                      <Globe size={11} className="text-sidebar-foreground/20" />
-                      More coming soon
-                    </div>
-                  </div>
-                )}
               </div>
             );
           })}
@@ -232,15 +197,6 @@ export default function Layout({ children, fullWidth = false }: LayoutProps) {
                 </div>
               </Link>
             )}
-            <div className="ml-4 pl-4 border-l border-sidebar-border space-y-1">
-              {domainSubItems.map((sub) => (
-                <Link key={sub.href} href={sub.href}>
-                  <div className="flex items-center gap-2 px-3 py-2 rounded text-sm text-sidebar-foreground/60">
-                    <Database size={13} />{sub.label}
-                  </div>
-                </Link>
-              ))}
-            </div>
           </nav>
         </div>
       )}

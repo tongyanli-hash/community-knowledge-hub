@@ -5,11 +5,11 @@
  */
 
 import Layout from "@/components/Layout";
+import BookRecommender from "@/components/BookRecommender";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Link } from "wouter";
-import { BookOpen, Users, Archive, ArrowRight, TrendingUp, Lightbulb, Globe, Database } from "lucide-react";
+import { BookOpen, Users, Archive, ArrowRight, TrendingUp, Lightbulb, Globe } from "lucide-react";
 import { totalBookCount } from "@/data/readingList";
-import { domains } from "@/data/domains";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273273644/HCJmvRPNXzYHmA4mt7a4Uy/hero-warm-7g5yWi57oSXZMKxAL35BZM.webp";
 
@@ -19,16 +19,9 @@ const features = [
   {
     icon: BookOpen,
     title: "Curated Reading List",
-    description: "100 carefully selected books across 8 domains — from macroeconomics and startup thinking to product development, marketing, and team building.",
+    description: "100 carefully selected books — from macroeconomics and startup thinking to product development, marketing, and team building.",
     href: "/reading-list",
     cta: "Browse Books",
-  },
-  {
-    icon: Database,
-    title: "Knowledge Domains",
-    description: "Deep-dive curricula on specialized topics — Data Engineering, Product Management, Finance, and more — each with learning paths, tools, and reading list cross-links.",
-    href: "/domains",
-    cta: "Explore Domains",
   },
   {
     icon: Users,
@@ -48,7 +41,6 @@ const features = [
 
 const stats = [
   { value: `${totalBookCount}`, label: "Curated Books" },
-  { value: "8", label: "Knowledge Domains" },
   { value: "30+", label: "Categories" },
   { value: "500+", label: "Members" },
 ];
@@ -101,9 +93,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AI Reading Guide */}
+      <BookRecommender />
+
       {/* Stats Bar */}
       <section className="bg-[oklch(0.13_0.02_264)] text-white">
-        <div className="max-w-5xl mx-auto px-8 py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-5xl mx-auto px-8 py-8 grid grid-cols-3 gap-6">
           {stats.map((stat, i) => (
             <div key={i} className="text-center lg:text-left border-l border-white/10 pl-6 first:border-l-0 first:pl-0 lg:first:border-l lg:first:pl-6">
               <div className="font-display text-3xl font-bold text-[oklch(0.65_0.18_264)]">{stat.value}</div>
@@ -122,7 +117,7 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
@@ -145,46 +140,6 @@ export default function Home() {
               </div>
             );
           })}
-        </div>
-      </section>
-
-      {/* Knowledge Domains Spotlight */}
-      <section className="py-16 px-8 lg:px-16 bg-[oklch(0.965_0.003_264)]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <span className="font-mono-custom text-xs tracking-[0.2em] uppercase text-[oklch(0.51_0.22_264)] mb-2 block">Specialized Learning</span>
-              <h2 className="font-display text-3xl font-bold text-foreground">Knowledge Domains</h2>
-            </div>
-            <Link href="/domains">
-              <button className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.51_0.22_264)] font-semibold hover:gap-2.5 transition-all">
-                View all domains <ArrowRight size={14} />
-              </button>
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {domains.map((domain) => (
-              <Link key={domain.id} href={domain.status === "active" ? `/domains/${domain.slug}` : "/domains"}>
-                <div className={`group relative border rounded-xl p-5 transition-all duration-200 overflow-hidden ${
-                  domain.status === "active"
-                    ? "border-border bg-card hover:border-[oklch(0.51_0.22_264)]/50 hover:shadow-md cursor-pointer"
-                    : "border-border/40 bg-muted/20 opacity-60 cursor-default"
-                }`}>
-                  <div className="absolute top-0 right-0 w-20 h-20 rounded-full -translate-y-1/2 translate-x-1/2 opacity-10" style={{ background: domain.color }} />
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ background: `${domain.color}20` }}>
-                    <Database size={15} style={{ color: domain.color }} />
-                  </div>
-                  <h3 className="font-display text-sm font-bold text-foreground mb-1 group-hover:text-[oklch(0.51_0.22_264)] transition-colors">{domain.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-snug mb-3">{domain.subtitle}</p>
-                  {domain.status === "active" ? (
-                    <span className="font-mono-custom text-[10px] bg-[oklch(0.51_0.22_264)]/10 text-[oklch(0.51_0.22_264)] px-2 py-0.5 rounded-sm uppercase tracking-wider">Available</span>
-                  ) : (
-                    <span className="font-mono-custom text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-sm uppercase tracking-wider">Coming Soon</span>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -241,7 +196,6 @@ export default function Home() {
           </div>
           <div className="flex gap-6 text-xs font-mono-custom uppercase tracking-widest">
             <Link href="/reading-list"><span className="hover:text-white transition-colors">Reading List</span></Link>
-            <Link href="/domains"><span className="hover:text-white transition-colors">Domains</span></Link>
             <Link href="/community"><span className="hover:text-white transition-colors">Community</span></Link>
             <Link href="/resources"><span className="hover:text-white transition-colors">Resources</span></Link>
           </div>
